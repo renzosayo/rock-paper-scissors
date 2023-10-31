@@ -8,13 +8,24 @@
 </head>
 <body>
     <div class="left">
-        <button class="rock">Rock</button>
-        <button class="paper">Paper</button>
-        <button class="scissors">Scissors</button>
+        <div class="top">
+            <button class="rps">Rock</button>
+            <button class="rps">Paper</button>
+            <button class="rps">Scissors</button>
+        </div>
+        <div class="choices">
+            <p>You chose:</p>
+            <div id="player-choice"></div>
+            <p>Computer chose:</p>
+            <div id="computer-choice"></div>
+        </div>
+        <div class="score">
+            <p id="player-score"></p>
+            <p id="computer-score"></p>
+        </div>
     </div>
     <div class="right">
-        <div class="score"></div>
-        <div class="results"></div>
+        <div class="results-log"></div>
     </div>
 
     <script src="script.js"></script>

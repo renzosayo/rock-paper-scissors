@@ -1,24 +1,94 @@
 * {
-    border: 1px solid black;
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
 }
 
 body {
     display: flex;
-}
-
-.left , 
-.right{
-    flex: 1;
+    justify-content: space-between;
+    background-color: burlywood;
+    min-height: 100vh;
+    overflow: none;
 }
 
 .left {
     display: flex;
-    justify-content: center;
-    align-items: center;
     flex-direction: column;
+    justify-content: space-between;
+    flex: 1;
+    padding: 16px;
+}
+
+.left div {
+    flex: 1;
+}
+
+.top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.right {
+    flex: 1;
+    margin: 24px;
+    border: 3px solid black;
+    background-color: white;
+    font-size: 16px;
+}
+
+span {
+    font-weight: 900;
+}
+
+.winner {
+    background-color: darkgreen;
+}
+
+.loser {
+    background-color: red;
+}
+
+.draw {
+    background-color: bisque;
+}
+
+.final-victory {
+    background-color: gold;
+}
+
+.choices,
+.score {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-size: 50px;
+    text-align: center;
+    margin: 16px;
 }
 
 .left button {
     padding: 8px 16px;
     margin: 8px;
+    width: 300px;
+    height: 150px;
+    color: black;
+    font-size: 24px;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    border: 3px solid black;
+}
+
+.results-log {
+    display: flex;
+    flex-direction: column;
+    padding: 16px;
+    gap: 16px;
+    height: 95vh;
+    overflow: scroll;
+}
+
+.results-log button {
+    padding: 16px;
+    font-size: 24px;
 }
