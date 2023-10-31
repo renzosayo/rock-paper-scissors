@@ -1,0 +1,24 @@
+* {
+    border: 1px solid black;
+}
+
+body {
+    display: flex;
+}
+
+.left , 
+.right{
+    flex: 1;
+}
+
+.left {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.left button {
+    padding: 8px 16px;
+    margin: 8px;
+}

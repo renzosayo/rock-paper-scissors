@@ -3,6 +3,14 @@
 const ROCK = "Rock";
 const PAPER = "Paper";
 const SCISSORS = "Scissors";
+const PLAYER = "Player";
+const COMPUTER = "Computer";
+
+const resultsDiv = document.querySelector('.results');
+const scoreDiv = document.querySelector('.score');
+
+let playerScore = 0;
+let computerScore = 0;
 
 function getComputerChoice() {
     let choice = Math.floor(Math.random() * 3);
@@ -33,8 +41,32 @@ function capitalize(text) {
 }
 
 // get player choice
-function getPlayerChoice() {
-    return capitalize(prompt("Please enter your choice: "));
+function getPlayerChoice(e) {
+    let playerChoice = e.target.textContent;
+
+    let computerChoice = getComputerChoice();
+
+    let winner = playRound(playerChoice, computerChoice);
+
+    updateScore(winner);
+
+}
+
+function updateScore(winner) {
+
+    if(winner === PLAYER) {
+        playerScore++;
+    } else if(winner === COMPUTER) {
+        computerScore++;
+    }
+
+    scoreDiv.textContent = `Player: ${playerScore}\n
+        Computer: ${computerScore}`;
+
+    if(playerScore >= 5 || computerScore >= 5) {
+        playerScore > computerScore ? alert("Player Wins!")
+            : alert("Computer Wins!");
+    }
 }
 
 // play a round
@@ -46,31 +78,31 @@ function playRound(playerSelection, computerSelection) {
 
     if(playerSelection === ROCK) {
         if(computerSelection === PAPER) {
-            winner = "Computer";
+            winner = COMPUTER;
             winnerSelection = computerSelection;
             loserSelection = playerSelection;
         } else if (computerSelection === SCISSORS) {
-            winner = "Player";
+            winner = PLAYER;
             winnerSelection = playerSelection;
             loserSelection = computerSelection;
         }
     } else if(playerSelection === PAPER) {
         if(computerSelection === ROCK) {
-            winner = "Player";
+            winner = PLAYER;
             winnerSelection = playerSelection;
             loserSelection = computerSelection;
         } else if(computerSelection === SCISSORS) {
-            winner = "Computer";
+            winner = COMPUTER;
             winnerSelection = computerSelection;
             loserSelection = playerSelection;
         }
     } else if(playerSelection === SCISSORS) {
         if(computerSelection === PAPER) {
-            winner = "Computer";
+            winner = COMPUTER;
             winnerSelection = computerSelection;
             loserSelection = playerSelection;
         } else if (computerSelection === ROCK) {
-            winner = "Player";
+            winner = PLAYER;
             winnerSelection = playerSelection;
             loserSelection = computerSelection;
         }
@@ -84,17 +116,30 @@ function playRound(playerSelection, computerSelection) {
 }
 // show participant selections
 function showSelections(playerSelection, computerSelection) {
-    console.log(`Player: ${playerSelection} \nComputer: ${computerSelection}`);
+
+    const textContainer = document.createElement('p');
+    textContainer.textContent = `Player: ${playerSelection}\n
+        Computer: ${computerSelection}`;
+
+    resultsDiv.appendChild(textContainer);
+
+    //console.log(`Player: ${playerSelection} \nComputer: ${computerSelection}`);
 }
 
 // output result of round
 function showRoundResult(winner, winnerSelection, loserSelection) {
 
+    const textContainer = document.createElement('p');
+    let roundResult = "";
+
     if(winner) {
-        console.log(winner + " wins! " + winnerSelection + " beats " + loserSelection);
+        roundResult = winner + " wins! " + winnerSelection + " beats " + loserSelection;
     } else {
-        console.log("Draw!");
+        roundResult = "Draw!";
     }
+
+    textContainer.textContent = roundResult;
+    resultsDiv.appendChild(textContainer);
 }
 
 function displayWinner(playerScore, computerScore) {
@@ -116,10 +161,10 @@ function game() {
         let result = playRound(playerSelection, computerSelection);
 
         switch(result) {
-            case "Player":
+            case PLAYER:
                 playerScore++;
                 break;
-            case "Computer":
+            case COMPUTER:
                 computerScore++;
                 break;
         }
@@ -131,5 +176,14 @@ function game() {
     }
 }
 
+function createPlayerSelectionButtons() {
+    const selections = document.querySelectorAll('button');
 
-game();
+    for(const selection of selections) {
+        selection.addEventListener('click', getPlayerChoice);
+    }
+}
+
+
+
+createPlayerSelectionButtons();
