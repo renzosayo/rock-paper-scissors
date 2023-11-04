@@ -136,13 +136,13 @@ function playRound(playerSelection, computerSelection) {
         }
     } else if(playerSelection === SCISSORS) {
         if(computerSelection === PAPER) {
-            winner = COMPUTER;
-            winnerSelection = computerSelection;
-            loserSelection = playerSelection;
-        } else if (computerSelection === ROCK) {
             winner = PLAYER;
             winnerSelection = playerSelection;
             loserSelection = computerSelection;
+        } else if (computerSelection === ROCK) {
+            winner = COMPUTER;
+            winnerSelection = computerSelection;
+            loserSelection = playerSelection;
         }
     }
 
